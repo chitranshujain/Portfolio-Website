@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chitranshu Jain | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <!-- Boxicons (for basic icons) -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Devicon (for skill logos) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo">Chitranshu Jain</div>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <section id="home" class="section hero-section reveal">
+        <div class="hero-content">
+          <h1>Hi, I'm <span id="typing"></span></h1>
+          <p class="hero-sub">Student, Front-end Web Developer</p>
+          <div class="socials top-socials">
+            <a
+              href="https://wa.me/918955226438"
+              class="social-icon whatsapp"
+              title="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="#" class="social-icon instagram" title="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-icon linkedin" title="LinkedIn"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="#" class="social-icon github" title="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="social-icon globe" title="Portfolio"
+              ><i class="fas fa-globe"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section reveal">
+        <div class="about-flex">
+          <div class="about-img-container">
+            <img
+              src="assets/profile.jpg"
+              alt="Profile Photo"
+              class="about-img"
+            />
+          </div>
+          <div class="about-info">
+            <h2>About Me</h2>
+            <p id="about-typing"></p>
+            <div class="about-contacts">
+              <span><i class="fa-solid fa-phone"></i> +91-8955226438</span>
+              <span
+                ><i class="fa-solid fa-envelope"></i>
+                jainchitranshu2006@gmail.com</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section education-section reveal">
+        <h2 class="section-heading">Education</h2>
+        <div class="edu-timeline">
+          <div class="edu-card">
+            <h3 class="edu-title">Graduation</h3>
+            <p>Poornima College of Engineering</p>
+            <p>B.Tech AI &amp; Data Science</p>
+            <span>CGPA: 7.4</span>
+          </div>
+          <div class="edu-card">
+            <h3 class="edu-title">12th (Senior Secondary)</h3>
+            <p>SBIOA Public School</p>
+            <p class="edu-board">CBSE Board</p>
+            <span>CGPA: 7.94</span>
+          </div>
+          <div class="edu-card">
+            <h3 class="edu-title">10th (Secondary)</h3>
+            <p>Springfield School</p>
+            <p class="edu-board">CBSE Board</p>
+            <span>CGPA: 9.45</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Add this in your <head> if not already done -->
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+      />
+
+      <section id="skills" class="section skills-section reveal">
+        <h2 class="section-heading">Skills</h2>
+        <div class="skills-row">
+          <div class="skill-card">
+            <i class="devicon-c-plain colored"></i>
+            <span class="skill-label">C</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-cplusplus-plain colored"></i>
+            <span class="skill-label">C++</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-python-plain colored"></i>
+            <span class="skill-label">Python</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-mysql-plain colored"></i>
+            <span class="skill-label">MySQL</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-html5-plain colored"></i>
+            <span class="skill-label">HTML5</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-css3-plain colored"></i>
+            <span class="skill-label">CSS3</span>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-javascript-plain colored"></i>
+            <span class="skill-label">JavaScript</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects-section reveal">
+        <h2 class="section-heading">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-img">
+              <img src="assets/project1.jpg" alt="Project 1" />
+            </div>
+            <div class="project-info">
+              <h3>Portfolio Website</h3>
+              <div class="project-hover">
+                <div class="project-links">
+                  <a href="#" class="btn btn-sm" target="_blank">Live Demo</a>
+                  <a href="#" class="btn btn-sm" target="_blank">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img">
+              <img src="assets/project2.jpg" alt="Hospital Management System" />
+            </div>
+            <div class="project-info">
+              <h3>Hospital Management System</h3>
+              <div class="project-hover">
+                <div class="project-links">
+                  <a href="#" class="btn btn-sm" target="_blank">Live Demo</a>
+                  <a href="#" class="btn btn-sm" target="_blank">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="assets/project3.jpg"
+                alt="Student Registration Portal"
+              />
+            </div>
+            <div class="project-info">
+              <h3>Student Registration Portal</h3>
+              <div class="project-hover">
+                <div class="project-links">
+                  <a href="#" class="btn btn-sm" target="_blank">Live Demo</a>
+                  <a href="#" class="btn btn-sm" target="_blank">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="section contact-section reveal contact-animate"
+      >
+        <h2 class="section-heading">Contact</h2>
+        <form id="contact-form" autocomplete="off">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit" class="btn send-btn">Send</button>
+          <div id="form-message"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-socials">
+        <div class="footer-socials-curve">
+          <div class="socials">
+            <a href="#" class="social-icon whatsapp" title="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="#" class="social-icon instagram" title="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-icon linkedin" title="LinkedIn"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="#" class="social-icon github" title="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="social-icon globe" title="Portfolio"
+              ><i class="fas fa-globe"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-text">
+        &copy; 2025 Chitranshu Jain. All rights reserved.
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
