@@ -13,13 +13,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <!-- Boxicons (for basic icons) -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-
-    <!-- Devicon (for skill logos) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
@@ -28,7 +25,7 @@
   <body>
     <nav class="navbar">
       <div class="nav-content">
-        <div class="logo">Chitranshu Jain</div>
+        <div class="logo">Portfolio</div>
         <ul class="nav-links">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -44,9 +41,10 @@
     </nav>
 
     <main>
+      <!-- Home/Hero Section -->
       <section id="home" class="section hero-section reveal">
         <div class="hero-content">
-          <h1>Hi, I'm <span id="typing"></span></h1>
+          <h1>Hi, I'm <span id="typing">Chitranshu Jain</span></h1>
           <p class="hero-sub">Student, Front-end Web Developer</p>
           <div class="socials top-socials">
             <a
@@ -71,18 +69,24 @@
         </div>
       </section>
 
+      <!-- About Section -->
       <section id="about" class="section about-section reveal">
         <div class="about-flex">
           <div class="about-img-container">
             <img
               src="assets/profile.jpg"
               alt="Profile Photo"
-              class="about-img"
+              class="about-img visible"
             />
           </div>
           <div class="about-info">
             <h2>About Me</h2>
-            <p id="about-typing"></p>
+            <p>
+              I'm a passionate student and front-end web developer with a love
+              for building beautiful, accessible, and performant web
+              experiences. I enjoy learning new technologies and collaborating
+              with others to create impactful projects.
+            </p>
             <div class="about-contacts">
               <span><i class="fa-solid fa-phone"></i> +91-8955226438</span>
               <span
@@ -94,7 +98,11 @@
         </div>
       </section>
 
-      <section id="education" class="section education-section reveal">
+      <!-- Education Section (original border glow) -->
+      <section
+        id="education"
+        class="section section-edu education-section reveal"
+      >
         <h2 class="section-heading">Education</h2>
         <div class="edu-timeline">
           <div class="edu-card">
@@ -118,13 +126,8 @@
         </div>
       </section>
 
-      <!-- Add this in your <head> if not already done -->
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
-      />
-
-      <section id="skills" class="section skills-section reveal">
+      <!-- Skills Section (custom inner background) -->
+      <section id="skills" class="section section-skills skills-section reveal">
         <h2 class="section-heading">Skills</h2>
         <div class="skills-row">
           <div class="skill-card">
@@ -158,7 +161,11 @@
         </div>
       </section>
 
-      <section id="projects" class="section projects-section reveal">
+      <!-- Projects Section (custom inner background) -->
+      <section
+        id="projects"
+        class="section section-projects projects-section reveal"
+      >
         <h2 class="section-heading">Projects</h2>
         <div class="projects-grid">
           <div class="project-card">
@@ -209,6 +216,7 @@
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section
         id="contact"
         class="section contact-section reveal contact-animate"

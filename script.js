@@ -1,5 +1,5 @@
 // Typing effect in hero section
-const typingText = "Chitranshu Jain";
+const typingText = "Your Name";
 const typingTarget = document.getElementById("typing");
 let i = 0, forward = true;
 function typeEffect() {
@@ -26,7 +26,7 @@ function typeEffect() {
 }
 
 // Typing effect for About Me section
-const aboutText = "I’m a first-year B.Tech student in Artificial Intelligence & Data Sciene passionate about programming, web development, and problem solving.I enjoy learning new technologies, working on real-world projects, and continuously improving my problem-solving skills.I believe in staying curious, consistent, and creative in everything I do.";
+const aboutText = "I'm a B.Tech AI & Data Science student and web developer passionate about building beautiful, accessible, and high-performance web applications.";
 const aboutTypingTarget = document.getElementById("about-typing");
 let j = 0;
 function aboutTypeEffect() {
@@ -39,7 +39,9 @@ function aboutTypeEffect() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Page startup animation
   setTimeout(() => document.body.classList.add("loaded"), 80);
+
   setTimeout(typeEffect, 600);
   setTimeout(aboutTypeEffect, 900);
 
@@ -56,38 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
   }
 
-  // Smooth scroll with navbar offset
-  function smoothScrollWithOffset(targetId) {
-    const target = document.getElementById(targetId);
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-    if (target) {
-      const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight - 10;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  }
-  const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        smoothScrollWithOffset(href.slice(1));
-      }
-    });
-  });
-
   // Scrollspy highlight
+  const navLinks = document.querySelectorAll('.nav-links a');
   const sections = Array.from(document.querySelectorAll('.section'));
   function scrollSpy() {
     let current = "home";
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
     sections.forEach(sec => {
       const rect = sec.getBoundingClientRect();
-      if (rect.top <= navbarHeight + 30 && rect.bottom > navbarHeight + 30) {
+      if (rect.top <= 120 && rect.bottom > 120) {
         current = sec.id;
       }
     });
@@ -97,6 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   window.addEventListener('scroll', scrollSpy);
   scrollSpy();
+
+  // Smooth scroll on nav click
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
 
   // Contact form validation + success animation
   const contactForm = document.getElementById("contact-form");
@@ -150,78 +139,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     skillIndex = (skillIndex + 1) % skillCards.length;
   }
+  cycleSkills();
+  skillInterval = setInterval(cycleSkills, 1000);
 
-  // --- Auto-cycle & hover/focus for education ---
-  const eduCards = Array.from(document.querySelectorAll('.edu-card'));
-  let eduIndex = 0;
-  let eduInterval;
-  function cycleEdu() {
-    eduCards.forEach((card, idx) => {
-      card.classList.toggle('active-edu', idx === eduIndex);
-    });
-    eduIndex = (eduIndex + 1) % eduCards.length;
-  }
-
-  // --- Auto-cycle & hover/focus for projects ---
-  const projectCards = Array.from(document.querySelectorAll('.project-card'));
-  let projectIndex = 0;
-  let projectInterval;
-  function cycleProjects() {
-    projectCards.forEach((card, idx) => {
-      card.classList.toggle('active-project', idx === projectIndex);
-    });
-    projectIndex = (projectIndex + 1) % projectCards.length;
-  }
-
-  // --- Intersection Observer for section-triggered auto-cycle ---
-  function setupSectionObserver() {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3
-    };
-
-    const callback = (entries, observer) => {
-      entries.forEach(entry => {
-        const target = entry.target;
-        if (target.id === 'education') {
-          if (entry.isIntersecting) {
-            cycleEdu();
-            eduInterval = setInterval(cycleEdu, 1800); // slower
-          } else {
-            clearInterval(eduInterval);
-            eduCards.forEach(c => c.classList.remove('active-edu'));
-          }
-        }
-        if (target.id === 'skills') {
-          if (entry.isIntersecting) {
-            cycleSkills();
-            skillInterval = setInterval(cycleSkills, 1000);
-          } else {
-            clearInterval(skillInterval);
-            skillCards.forEach(c => c.classList.remove('active-skill'));
-          }
-        }
-        if (target.id === 'projects') {
-          if (entry.isIntersecting) {
-            cycleProjects();
-            projectInterval = setInterval(cycleProjects, 1000);
-          } else {
-            clearInterval(projectInterval);
-            projectCards.forEach(c => c.classList.remove('active-project'));
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(document.getElementById('education'));
-    observer.observe(document.getElementById('skills'));
-    observer.observe(document.getElementById('projects'));
-  }
-  setupSectionObserver();
-
-  // Manual hover/focus for skills, education, projects
   skillCards.forEach((card, idx) => {
     card.addEventListener('mouseenter', () => {
       clearInterval(skillInterval);
@@ -243,6 +163,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- Auto-cycle & hover/focus for education ---
+  const eduCards = Array.from(document.querySelectorAll('.edu-card'));
+  let eduIndex = 0;
+  let eduInterval;
+  function cycleEdu() {
+    eduCards.forEach((card, idx) => {
+      card.classList.toggle('active-edu', idx === eduIndex);
+    });
+    eduIndex = (eduIndex + 1) % eduCards.length;
+  }
+  cycleEdu();
+  eduInterval = setInterval(cycleEdu, 1000);
+
   eduCards.forEach((card, idx) => {
     card.addEventListener('mouseenter', () => {
       clearInterval(eduInterval);
@@ -251,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     card.addEventListener('mouseleave', () => {
       cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1800);
+      eduInterval = setInterval(cycleEdu, 1000);
     });
     card.addEventListener('focus', () => {
       clearInterval(eduInterval);
@@ -260,9 +193,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     card.addEventListener('blur', () => {
       cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1800);
+      eduInterval = setInterval(cycleEdu, 1000);
     });
   });
+
+  // --- Auto-cycle & hover/focus for projects ---
+  const projectCards = Array.from(document.querySelectorAll('.project-card'));
+  let projectIndex = 0;
+  let projectInterval;
+  function cycleProjects() {
+    projectCards.forEach((card, idx) => {
+      card.classList.toggle('active-project', idx === projectIndex);
+    });
+    projectIndex = (projectIndex + 1) % projectCards.length;
+  }
+  cycleProjects();
+  projectInterval = setInterval(cycleProjects, 1000);
 
   projectCards.forEach((card, idx) => {
     card.addEventListener('mouseenter', () => {
