@@ -1,15 +1,10 @@
-/* ================================================
-   PORTFOLIO STYLES – Dark‑Cyber Theme
-   (full CSS, updated 4 Jul 2025)
-   ================================================ */
-
 /* ---------- Root Variables ---------- */
 :root {
   --bg: #000000;
   --bg-dark: #000000;
   --primary: #00ffd5;
   --primary-glow: #8000ff;
-  --accent: #128277;
+  --accent: #20ffe9;
   --text: #ffffff;
   --card-bg: #000000;
   --radius: 10px;
@@ -23,7 +18,7 @@
   --card-bg-projects: #000000;
 }
 
-body.light-theme {
+/* body.light-theme {
   --bg: #000000;
   --bg-dark: #000000;
   --primary: #6c3ef7;
@@ -36,7 +31,7 @@ body.light-theme {
   --card-bg-skills: #0096e1;
   --card-bg-edu: #fff7e7;
   --card-bg-projects: #e7f0ff;
-}
+} */
 
 body {
   margin: 0;
@@ -50,7 +45,7 @@ body {
 }
 
 /* --- Page Opening Animation: Fade and Scale --- */
-body main,
+/* body main,
 body .navbar,
 body footer {
   opacity: 0;
@@ -63,10 +58,10 @@ body.loaded .navbar,
 body.loaded footer {
   opacity: 1;
   transform: scale(1);
-}
+} */
 
 /* --- Custom Cyber Scrollbar --- */
-body,
+/* body,
 main,
 .section {
   scrollbar-width: thin;
@@ -103,7 +98,7 @@ main {
   max-width: var(--maxw);
   margin: 40px auto 0 auto;
   padding: 0 8px;
-}
+} */
 
 /* --- Section Border Responsive & Glow on Hover --- */
 .section,
@@ -162,10 +157,10 @@ main {
 .nav-content {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 100px;
   justify-content: flex-start;
   width: 100%;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 .logo {
   margin-left: 18px;
@@ -341,11 +336,31 @@ main {
   display: flex;
   gap: 32px;
   font-size: 1.1em;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .about-contacts i {
   color: var(--primary);
   margin-right: 8px;
 }
+.contact-link {
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+  text-decoration: none;
+  gap: 8px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.contact-link:hover,
+.contact-link:focus {
+  color: var(--accent);
+}
+.contact-link i {
+  margin-right: 6px;
+  font-size: 1.1em;
+}
+
 /* Mail‑to hover feature */
 .mailto-link {
   position: relative;
@@ -373,12 +388,12 @@ main {
   transform: translateX(-50%) translateY(-140%);
 }
 
-/* ---------- Skills Section (multi-row, no horizontal scroll) ---------- */
+/* ---------- Skills Section (smaller version) ---------- */
 .skills-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 28px;
+  gap: 10px; /* Reduced gap */
   align-items: flex-start;
   justify-content: flex-start;
   overflow-x: visible;
@@ -390,10 +405,11 @@ main {
   border-bottom: none;
   min-height: 0;
 }
+
 .skill-card {
-  width: 200px;
-  min-width: 180px;
-  max-width: 220px;
+  width: 90px; /* Smaller width */
+  min-width: 70px;
+  max-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -401,8 +417,8 @@ main {
   overflow: visible;
   text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 16px;
-  border-radius: 18px;
+  padding: 8px; /* Smaller padding */
+  border-radius: 10px; /* Slightly smaller radius */
   border: 2px solid var(--primary);
   background: var(--card-bg-skills);
   box-shadow: 0 0 0 transparent;
@@ -412,6 +428,7 @@ main {
   z-index: 1;
   animation: skillFadeIn 0.7s cubic-bezier(0.22, 1.5, 0.32, 1);
 }
+
 @keyframes skillFadeIn {
   0% {
     opacity: 0;
@@ -422,30 +439,33 @@ main {
     transform: scale(1) translateY(0);
   }
 }
+
 .skill-card img,
 .skill-card i {
-  max-width: 96px;
-  max-height: 96px;
+  max-width: 36px; /* Smaller icon */
+  max-height: 36px;
   object-fit: contain;
-  margin-bottom: 0.6em;
-  filter: drop-shadow(0 0 10px var(--primary));
+  margin-bottom: 0.3em;
+  filter: drop-shadow(0 0 6px var(--primary));
   transition: filter 0.3s;
-  font-size: 96px;
+  font-size: 36px;
 }
+
 .skill-card .skill-label {
   color: var(--primary);
-  margin-top: 10px;
+  margin-top: 4px;
   font-family: var(--font-head);
-  font-size: 0.92em;
+  font-size: 0.7em; /* Smaller font */
   letter-spacing: 0.5px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .skill-card.active-skill,
 .skill-card:hover,
 .skill-card:focus {
   color: #fff;
-  box-shadow: 0 0 60px var(--glow-main), 0 0 16px var(--primary-glow);
+  box-shadow: 0 0 30px var(--glow-main), 0 0 8px var(--primary-glow);
   opacity: 1;
   filter: none;
   z-index: 2;
@@ -846,7 +866,27 @@ body:not(.light-theme) #contact-form textarea {
     flex-wrap: wrap;
     overflow-x: visible;
   }
-  .skill-card,
+  /* --- Updated for smaller skills --- */
+  .skill-card {
+    width: 60px;
+    min-width: 50px;
+    max-width: 70px;
+    padding: 4px;
+    border-radius: 7px;
+  }
+  .skill-card img,
+  .skill-card i {
+    max-width: 24px;
+    max-height: 24px;
+    font-size: 24px;
+  }
+  .skill-card .skill-label {
+    font-size: 0.6em;
+    margin-top: 2px;
+  }
+  .skills-row {
+    gap: 6px;
+  }
   .edu-card,
   .project-card {
     width: 140px;

@@ -1,5 +1,5 @@
 // Typing effect in hero section
-const typingText = "Your Name";
+const typingText = "Chitranshu Jain";
 const typingTarget = document.getElementById("typing");
 let i = 0, forward = true;
 function typeEffect() {
