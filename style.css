@@ -1,4 +1,3 @@
-/* ---------- Root Variables ---------- */
 :root {
   --bg: #000000;
   --bg-dark: #000000;
@@ -6,7 +5,7 @@
   --primary-glow: #8000ff;
   --accent: #20ffe9;
   --text: #ffffff;
-  --card-bg: #000000;
+  --card-bg: url("assets/bg.jpg");
   --radius: 10px;
   --font-head: "Orbitron", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -18,24 +17,9 @@
   --card-bg-projects: #000000;
 }
 
-/* body.light-theme {
-  --bg: #000000;
-  --bg-dark: #000000;
-  --primary: #6c3ef7;
-  --primary-glow: #a393fa;
-  --accent: #10d0ff;
-  --text: #232136;
-  --card-bg: #08f4f4;
-  --shadow-light: 0 2px 16px rgba(16, 208, 255, 0.1);
-  --glow-main: #a393fa;
-  --card-bg-skills: #0096e1;
-  --card-bg-edu: #fff7e7;
-  --card-bg-projects: #e7f0ff;
-} */
-
 body {
   margin: 0;
-  background: var(--bg);
+  background: var(--card-bg);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1.06em;
@@ -44,63 +28,12 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Page Opening Animation: Fade and Scale --- */
-/* body main,
-body .navbar,
-body footer {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.7s cubic-bezier(0.22, 1.5, 0.32, 1),
-    transform 0.7s cubic-bezier(0.22, 1.5, 0.32, 1);
-}
-body.loaded main,
-body.loaded .navbar,
-body.loaded footer {
-  opacity: 1;
-  transform: scale(1);
-} */
-
-/* --- Custom Cyber Scrollbar --- */
-/* body,
-main,
-.section {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--bg-dark);
-}
-body::-webkit-scrollbar,
-main::-webkit-scrollbar,
-.section::-webkit-scrollbar {
-  width: 10px;
-  background: var(--bg-dark);
-  border-radius: 8px;
-}
-body::-webkit-scrollbar-thumb,
-main::-webkit-scrollbar-thumb,
-.section::-webkit-scrollbar-thumb {
-  background: linear-gradient(120deg, var(--primary), var(--accent));
-  border-radius: 8px;
-  box-shadow: 0 0 10px var(--primary);
-  border: 2px solid var(--bg-dark);
-}
-body.light-theme::-webkit-scrollbar,
-main.light-theme::-webkit-scrollbar,
-.section.light-theme::-webkit-scrollbar {
-  background: var(--bg-dark);
-}
-body.light-theme::-webkit-scrollbar-thumb,
-main.light-theme::-webkit-scrollbar-thumb,
-.section.light-theme::-webkit-scrollbar-thumb {
-  background: linear-gradient(120deg, var(--primary-glow), var(--accent));
-  border: 2px solid var(--bg-dark);
-}
-
 main {
   max-width: var(--maxw);
   margin: 40px auto 0 auto;
   padding: 0 8px;
-} */
+}
 
-/* --- Section Border Responsive & Glow on Hover --- */
 .section,
 .section-skills,
 .section-edu,
@@ -110,7 +43,7 @@ main {
   max-width: 1200px;
   margin: 48px auto;
   padding: 40px 3vw;
-  background: var(--card-bg);
+  background: var(--card-bg) url("assets/bg.jpg") center center/cover no-repeat;
   border-radius: var(--radius);
   box-shadow: none;
   position: relative;
@@ -132,7 +65,6 @@ main {
   margin-top: 0;
 }
 
-/* Section Headings */
 .section-heading {
   text-align: center;
   font-family: var(--font-head);
@@ -144,7 +76,6 @@ main {
   margin-left: 0;
 }
 
-/* ---------- Navbar and Content Container ---------- */
 .navbar {
   background: var(--bg-dark);
   position: sticky;
@@ -213,7 +144,6 @@ main {
   color: var(--accent);
 }
 
-/* ---------- Theme Toggle Button (if using .theme-toggle class) ---------- */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -244,7 +174,6 @@ main {
   pointer-events: none;
 }
 
-/* ---------- Hero Section ---------- */
 .hero-section {
   position: relative;
   min-height: 380px;
@@ -256,7 +185,7 @@ main {
   max-width: 600px;
   margin: auto;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 32px;
   position: relative;
   z-index: 1;
 }
@@ -288,7 +217,6 @@ main {
   gap: 18px;
 }
 
-/* ---------- About Section ---------- */
 .about-flex {
   display: flex;
   align-items: center;
@@ -361,7 +289,6 @@ main {
   font-size: 1.1em;
 }
 
-/* Mail‑to hover feature */
 .mailto-link {
   position: relative;
   display: inline-block;
@@ -388,14 +315,13 @@ main {
   transform: translateX(-50%) translateY(-140%);
 }
 
-/* ---------- Skills Section (smaller version) ---------- */
 .skills-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px; /* Reduced gap */
+  gap: 14px;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-x: visible;
   overflow-y: visible;
   padding-bottom: 0;
@@ -407,9 +333,9 @@ main {
 }
 
 .skill-card {
-  width: 90px; /* Smaller width */
-  min-width: 70px;
-  max-width: 100px;
+  width: 110px;
+  min-width: 90px;
+  max-width: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -417,8 +343,8 @@ main {
   overflow: visible;
   text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 8px; /* Smaller padding */
-  border-radius: 10px; /* Slightly smaller radius */
+  padding: 12px;
+  border-radius: 12px;
   border: 2px solid var(--primary);
   background: var(--card-bg-skills);
   box-shadow: 0 0 0 transparent;
@@ -442,20 +368,19 @@ main {
 
 .skill-card img,
 .skill-card i {
-  max-width: 36px; /* Smaller icon */
-  max-height: 36px;
+  max-width: 48px;
+  max-height: 48px;
   object-fit: contain;
   margin-bottom: 0.3em;
-  filter: drop-shadow(0 0 6px var(--primary));
   transition: filter 0.3s;
-  font-size: 36px;
+  font-size: 48px;
 }
 
 .skill-card .skill-label {
   color: var(--primary);
-  margin-top: 4px;
+  margin-top: 6px;
   font-family: var(--font-head);
-  font-size: 0.7em; /* Smaller font */
+  font-size: 0.85em;
   letter-spacing: 0.5px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -476,14 +401,22 @@ main {
   color: #fff;
 }
 
-/* ---------- Education Section (multi-row, no horizontal scroll) ---------- */
+.skill-card .devicon-github-original,
+.skill-card .devicon-canva-original,
+.skill-card .devicon-vscode-plain {
+  font-size: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  margin-bottom: 0.3em;
+}
+
 .edu-timeline {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 28px;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-x: visible;
   overflow-y: visible;
   padding-bottom: 0;
@@ -550,14 +483,13 @@ main {
   font-family: "Fira Code", monospace;
 }
 
-/* ---------- Projects Section (multi-row, no horizontal scroll, same card size as education) ---------- */
 .projects-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 28px;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-x: visible;
   overflow-y: visible;
   padding-bottom: 0;
@@ -592,6 +524,7 @@ main {
   z-index: 1;
   animation: projectFadeIn 0.8s cubic-bezier(0.22, 1.5, 0.32, 1);
 }
+
 @keyframes projectFadeIn {
   0% {
     opacity: 0;
@@ -602,6 +535,32 @@ main {
     transform: scale(1) translateY(0);
   }
 }
+
+.project-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.project-card:hover .project-img img {
+  transform: scale(1.05);
+}
+
 .project-info {
   padding: 18px 14px 14px 14px;
 }
@@ -612,7 +571,6 @@ main {
   background: var(--card-bg-projects);
   box-shadow: 0 0 60px var(--glow-main), 0 0 16px var(--primary-glow);
   border-color: var(--glow-main);
-  /* Removed transform: scale(1.12); */
   z-index: 2;
 }
 .project-hover {
@@ -650,7 +608,6 @@ main {
   margin-top: 0.4em;
 }
 
-/* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
   border: none;
@@ -675,14 +632,13 @@ main {
   box-shadow: 0 0 20px var(--primary);
 }
 
-/* ---------- Contact Section ---------- */
 .contact-section {
   animation: contactFadeIn 0.5s cubic-bezier(0.22, 1.5, 0.32, 1);
   width: 96vw;
   max-width: 1200px;
   margin: 40px auto;
   padding: 40px 2vw;
-  background: var(--card-bg);
+  background: var(--card-bg) url("assets/bg.jpg") center center/cover no-repeat;
   border-radius: var(--radius);
   box-shadow: none;
   position: relative;
@@ -716,7 +672,7 @@ main {
   background: linear-gradient(
     120deg,
     var(--card-bg) 85%,
-    var(--primary-glow) 100%
+    /* var(--primary-glow) 100% */
   );
   animation: none;
 }
@@ -751,10 +707,9 @@ body:not(.light-theme) #contact-form textarea {
   color: var(--accent);
 }
 
-/* ---------- Footer Section ---------- */
 .footer-socials {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 1em;
 }
@@ -764,6 +719,15 @@ body:not(.light-theme) #contact-form textarea {
   box-shadow: 0 4px 32px var(--primary-glow);
   padding: 14px 36px 18px 36px;
   display: inline-block;
+}
+.footer-lets-connect {
+  font-family: var(--font-head);
+  color: var(--primary);
+  font-size: 1.3em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 18px var(--primary-glow);
 }
 .footer-text {
   margin-top: 0.5em;
@@ -791,10 +755,9 @@ body:not(.light-theme) #contact-form textarea {
   color: #fff;
   background: var(--accent);
   box-shadow: 0 0 20px var(--primary), 0 0 36px var(--accent);
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.1);
 }
 
-/* ---------- Responsive Tweaks ---------- */
 @media (max-width: 1200px) {
   .section,
   .section-skills,
@@ -841,6 +804,13 @@ body:not(.light-theme) #contact-form textarea {
     max-width: 98vw;
     padding: 8px 4px;
   }
+  .project-img {
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+  }
+  .project-img img {
+    border-radius: 8px;
+  }
 }
 @media (max-width: 600px) {
   .nav-links {
@@ -866,23 +836,22 @@ body:not(.light-theme) #contact-form textarea {
     flex-wrap: wrap;
     overflow-x: visible;
   }
-  /* --- Updated for smaller skills --- */
   .skill-card {
-    width: 60px;
-    min-width: 50px;
-    max-width: 70px;
-    padding: 4px;
-    border-radius: 7px;
+    width: 80px;
+    min-width: 70px;
+    max-width: 90px;
+    padding: 6px;
+    border-radius: 8px;
   }
   .skill-card img,
   .skill-card i {
-    max-width: 24px;
-    max-height: 24px;
-    font-size: 24px;
+    max-width: 36px;
+    max-height: 36px;
+    font-size: 36px;
   }
   .skill-card .skill-label {
-    font-size: 0.6em;
-    margin-top: 2px;
+    font-size: 0.7em;
+    margin-top: 3px;
   }
   .skills-row {
     gap: 6px;
@@ -902,6 +871,13 @@ body:not(.light-theme) #contact-form textarea {
     width: 100vw;
     max-width: 100vw;
     padding: 16px 2vw;
+    border-radius: 6px;
+  }
+  .project-img {
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+  }
+  .project-img img {
     border-radius: 6px;
   }
 }
