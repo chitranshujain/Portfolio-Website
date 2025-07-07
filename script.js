@@ -1,3 +1,12 @@
+// Responsive Navbar Toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
+
 // Typing effect in hero section
 const typingText = "Chitranshu Jain";
 const typingTarget = document.getElementById("typing");
@@ -38,29 +47,25 @@ function aboutTypeEffect() {
   }
 }
 
+// DOMContentLoaded: Initialize effects
 document.addEventListener("DOMContentLoaded", () => {
-  // Page startup animation
-  setTimeout(() => document.body.classList.add("loaded"), 80);
-
   setTimeout(typeEffect, 600);
   setTimeout(aboutTypeEffect, 900);
 
   // Theme toggle
   const themeToggle = document.getElementById("themeToggle");
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
-    themeToggle.innerHTML = document.body.classList.contains("light-theme")
-      ? '<i class="fa-solid fa-sun"></i>'
-      : '<i class="fa-solid fa-moon"></i>';
-  });
-  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.body.classList.add("light-theme");
-    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+    });
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.classList.add("light-theme");
+    }
   }
 
   // Scrollspy highlight
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const sections = Array.from(document.querySelectorAll('.section'));
+  const navLinksEls = document.querySelectorAll('.nav-links a');
+  const sections = Array.from(document.querySelectorAll('.section, .section-skills, .section-edu'));
   function scrollSpy() {
     let current = "home";
     sections.forEach(sec => {
@@ -69,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         current = sec.id;
       }
     });
-    navLinks.forEach(link => {
+    navLinksEls.forEach(link => {
       link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
   }
@@ -77,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   scrollSpy();
 
   // Smooth scroll on nav click
-  navLinks.forEach(link => {
+  navLinksEls.forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href.startsWith('#')) {
@@ -87,49 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Contact form validation + success animation
-  const contactForm = document.getElementById("contact-form");
-  const formMessage = document.getElementById("form-message");
-  if (contactForm && formMessage) {
-    contactForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const name = contactForm.name.value.trim();
-      const email = contactForm.email.value.trim();
-      const message = contactForm.message.value.trim();
-      if (!name || !/\S+@\S+\.\S+/.test(email) || !message) {
-        formMessage.textContent = "Please fill all fields with valid information.";
-        formMessage.style.color = "#ff4b4b";
-        contactForm.classList.remove("contact-success");
-        contactForm.classList.add("contact-error");
-        setTimeout(() => contactForm.classList.remove("contact-error"), 800);
-        return;
-      }
-      formMessage.textContent = "Your message has been sent! Thank you.";
-      formMessage.style.color = "var(--accent)";
-      contactForm.reset();
-      contactForm.classList.remove("contact-error");
-      contactForm.classList.add("contact-success");
-      setTimeout(() => {
-        formMessage.textContent = "";
-        contactForm.classList.remove("contact-success");
-      }, 1200);
-    });
-  }
-
-  // About image animation on scroll
-  const aboutImg = document.querySelector('.about-img');
-  function animateAboutImg() {
-    if (!aboutImg) return;
-    const rect = aboutImg.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
-      aboutImg.classList.add('visible');
-      window.removeEventListener('scroll', animateAboutImg);
-    }
-  }
-  window.addEventListener('scroll', animateAboutImg);
-  animateAboutImg();
-
-  // --- Auto-cycle & hover/focus for skills ---
+  // Skills auto-cycle & hover/focus
   const skillCards = Array.from(document.querySelectorAll('.skill-card'));
   let skillIndex = 0;
   let skillInterval;
@@ -139,31 +102,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     skillIndex = (skillIndex + 1) % skillCards.length;
   }
-  cycleSkills();
-  skillInterval = setInterval(cycleSkills, 1000);
+  if (skillCards.length) {
+    cycleSkills();
+    skillInterval = setInterval(cycleSkills, 1000);
+    skillCards.forEach((card, idx) => {
+      card.addEventListener('mouseenter', () => {
+        clearInterval(skillInterval);
+        skillCards.forEach(c => c.classList.remove('active-skill'));
+        card.classList.add('active-skill');
+      });
+      card.addEventListener('mouseleave', () => {
+        cycleSkills();
+        skillInterval = setInterval(cycleSkills, 1000);
+      });
+      card.addEventListener('focus', () => {
+        clearInterval(skillInterval);
+        skillCards.forEach(c => c.classList.remove('active-skill'));
+        card.classList.add('active-skill');
+      });
+      card.addEventListener('blur', () => {
+        cycleSkills();
+        skillInterval = setInterval(cycleSkills, 1000);
+      });
+    });
+  }
 
-  skillCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(skillInterval);
-      skillCards.forEach(c => c.classList.remove('active-skill'));
-      card.classList.add('active-skill');
-    });
-    card.addEventListener('mouseleave', () => {
-      cycleSkills();
-      skillInterval = setInterval(cycleSkills, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(skillInterval);
-      skillCards.forEach(c => c.classList.remove('active-skill'));
-      card.classList.add('active-skill');
-    });
-    card.addEventListener('blur', () => {
-      cycleSkills();
-      skillInterval = setInterval(cycleSkills, 1000);
-    });
-  });
-
-  // --- Auto-cycle & hover/focus for education ---
+  // Education cards auto-cycle & hover/focus
   const eduCards = Array.from(document.querySelectorAll('.edu-card'));
   let eduIndex = 0;
   let eduInterval;
@@ -173,61 +137,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     eduIndex = (eduIndex + 1) % eduCards.length;
   }
-  cycleEdu();
-  eduInterval = setInterval(cycleEdu, 1000);
-
-  eduCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(eduInterval);
-      eduCards.forEach(c => c.classList.remove('active-edu'));
-      card.classList.add('active-edu');
+  if (eduCards.length) {
+    cycleEdu();
+    eduInterval = setInterval(cycleEdu, 1000);
+    eduCards.forEach((card, idx) => {
+      card.addEventListener('mouseenter', () => {
+        clearInterval(eduInterval);
+        eduCards.forEach(c => c.classList.remove('active-edu'));
+        card.classList.add('active-edu');
+      });
+      card.addEventListener('mouseleave', () => {
+        cycleEdu();
+        eduInterval = setInterval(cycleEdu, 1000);
+      });
+      card.addEventListener('focus', () => {
+        clearInterval(eduInterval);
+        eduCards.forEach(c => c.classList.remove('active-edu'));
+        card.classList.add('active-edu');
+      });
+      card.addEventListener('blur', () => {
+        cycleEdu();
+        eduInterval = setInterval(cycleEdu, 1000);
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(eduInterval);
-      eduCards.forEach(c => c.classList.remove('active-edu'));
-      card.classList.add('active-edu');
-    });
-    card.addEventListener('blur', () => {
-      cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1000);
-    });
-  });
-
-  // --- Auto-cycle & hover/focus for projects ---
-  const projectCards = Array.from(document.querySelectorAll('.project-card'));
-  let projectIndex = 0;
-  let projectInterval;
-  function cycleProjects() {
-    projectCards.forEach((card, idx) => {
-      card.classList.toggle('active-project', idx === projectIndex);
-    });
-    projectIndex = (projectIndex + 1) % projectCards.length;
   }
-  cycleProjects();
-  projectInterval = setInterval(cycleProjects, 1000);
-
-  projectCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(projectInterval);
-      projectCards.forEach(c => c.classList.remove('active-project'));
-      card.classList.add('active-project');
-    });
-    card.addEventListener('mouseleave', () => {
-      cycleProjects();
-      projectInterval = setInterval(cycleProjects, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(projectInterval);
-      projectCards.forEach(c => c.classList.remove('active-project'));
-      card.classList.add('active-project');
-    });
-    card.addEventListener('blur', () => {
-      cycleProjects();
-      projectInterval = setInterval(cycleProjects, 1000);
-    });
-  });
 });
