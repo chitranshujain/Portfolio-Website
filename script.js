@@ -231,3 +231,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// === Skills Slider: Horizontal Auto-Moving with Manual Navigation ===
+// This code enables horizontal scrolling, autoplay, and pause-on-hover for the skills slider.
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector('.skills-slider');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+
+  function getScrollAmount() {
+    const firstCard = slider ? slider.querySelector('.skill-card') : null;
+    if (firstCard) {
+      const style = window.getComputedStyle(firstCard);
+      const marginRight = parseInt(style.marginRight) || 0;
+      return firstCard.offsetWidth + marginRight;
+    }
+    return 120; // fallback
+  }
+  let scrollAmount = getScrollAmount();
+
+  // Manual navigation
+  prevBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+  nextBtn.addEventListener('click', () => {
+    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  // Autoplay functionality
+  let autoScroll = setInterval(() => {
+    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) {
+      slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, 2000);
+
+  // Pause on hover
+  slider.addEventListener('mouseenter', () => clearInterval(autoScroll));
+  slider.addEventListener('mouseleave', () => {
+    autoScroll = setInterval(() => {
+      if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }, 2000);
+  });
+
+  // Update scrollAmount on window resize (for responsiveness)
+  window.addEventListener('resize', () => {
+    scrollAmount = getScrollAmount();
+  });
+});
