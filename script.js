@@ -41,21 +41,20 @@ function aboutTypeEffect() {
 document.addEventListener("DOMContentLoaded", () => {
   // Page startup animation
   setTimeout(() => document.body.classList.add("loaded"), 80);
-
   setTimeout(typeEffect, 600);
   setTimeout(aboutTypeEffect, 900);
 
   // Theme toggle
   const themeToggle = document.getElementById("themeToggle");
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
-    themeToggle.innerHTML = document.body.classList.contains("light-theme")
-      ? '<i class="fa-solid fa-sun"></i>'
-      : '<i class="fa-solid fa-moon"></i>';
-  });
-  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.body.classList.add("light-theme");
-    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+      themeToggle.innerHTML = document.body.classList.contains("light-theme") ? '' : '';
+    });
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.classList.add("light-theme");
+      themeToggle.innerHTML = '';
+    }
   }
 
   // Scrollspy highlight
@@ -139,29 +138,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     skillIndex = (skillIndex + 1) % skillCards.length;
   }
-  cycleSkills();
-  skillInterval = setInterval(cycleSkills, 1000);
-
-  skillCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(skillInterval);
-      skillCards.forEach(c => c.classList.remove('active-skill'));
-      card.classList.add('active-skill');
+  if (skillCards.length) {
+    cycleSkills();
+    skillInterval = setInterval(cycleSkills, 1000);
+    skillCards.forEach((card, idx) => {
+      card.addEventListener('mouseenter', () => {
+        clearInterval(skillInterval);
+        skillCards.forEach(c => c.classList.remove('active-skill'));
+        card.classList.add('active-skill');
+      });
+      card.addEventListener('mouseleave', () => {
+        cycleSkills();
+        skillInterval = setInterval(cycleSkills, 1000);
+      });
+      card.addEventListener('focus', () => {
+        clearInterval(skillInterval);
+        skillCards.forEach(c => c.classList.remove('active-skill'));
+        card.classList.add('active-skill');
+      });
+      card.addEventListener('blur', () => {
+        cycleSkills();
+        skillInterval = setInterval(cycleSkills, 1000);
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      cycleSkills();
-      skillInterval = setInterval(cycleSkills, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(skillInterval);
-      skillCards.forEach(c => c.classList.remove('active-skill'));
-      card.classList.add('active-skill');
-    });
-    card.addEventListener('blur', () => {
-      cycleSkills();
-      skillInterval = setInterval(cycleSkills, 1000);
-    });
-  });
+  }
 
   // --- Auto-cycle & hover/focus for education ---
   const eduCards = Array.from(document.querySelectorAll('.edu-card'));
@@ -173,29 +173,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     eduIndex = (eduIndex + 1) % eduCards.length;
   }
-  cycleEdu();
-  eduInterval = setInterval(cycleEdu, 1000);
-
-  eduCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(eduInterval);
-      eduCards.forEach(c => c.classList.remove('active-edu'));
-      card.classList.add('active-edu');
+  if (eduCards.length) {
+    cycleEdu();
+    eduInterval = setInterval(cycleEdu, 1000);
+    eduCards.forEach((card, idx) => {
+      card.addEventListener('mouseenter', () => {
+        clearInterval(eduInterval);
+        eduCards.forEach(c => c.classList.remove('active-edu'));
+        card.classList.add('active-edu');
+      });
+      card.addEventListener('mouseleave', () => {
+        cycleEdu();
+        eduInterval = setInterval(cycleEdu, 1000);
+      });
+      card.addEventListener('focus', () => {
+        clearInterval(eduInterval);
+        eduCards.forEach(c => c.classList.remove('active-edu'));
+        card.classList.add('active-edu');
+      });
+      card.addEventListener('blur', () => {
+        cycleEdu();
+        eduInterval = setInterval(cycleEdu, 1000);
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(eduInterval);
-      eduCards.forEach(c => c.classList.remove('active-edu'));
-      card.classList.add('active-edu');
-    });
-    card.addEventListener('blur', () => {
-      cycleEdu();
-      eduInterval = setInterval(cycleEdu, 1000);
-    });
-  });
+  }
 
   // --- Auto-cycle & hover/focus for projects ---
   const projectCards = Array.from(document.querySelectorAll('.project-card'));
@@ -207,38 +208,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     projectIndex = (projectIndex + 1) % projectCards.length;
   }
-  cycleProjects();
-  projectInterval = setInterval(cycleProjects, 1000);
+  if (projectCards.length) {
+    cycleProjects();
+    projectInterval = setInterval(cycleProjects, 1000);
+    projectCards.forEach((card, idx) => {
+      card.addEventListener('mouseenter', () => {
+        clearInterval(projectInterval);
+        projectCards.forEach(c => c.classList.remove('active-project'));
+        card.classList.add('active-project');
+      });
+      card.addEventListener('mouseleave', () => {
+        cycleProjects();
+        projectInterval = setInterval(cycleProjects, 1000);
+      });
+      card.addEventListener('focus', () => {
+        clearInterval(projectInterval);
+        projectCards.forEach(c => c.classList.remove('active-project'));
+        card.classList.add('active-project');
+      });
+      card.addEventListener('blur', () => {
+        cycleProjects();
+        projectInterval = setInterval(cycleProjects, 1000);
+      });
+    });
+  }
 
-  projectCards.forEach((card, idx) => {
-    card.addEventListener('mouseenter', () => {
-      clearInterval(projectInterval);
-      projectCards.forEach(c => c.classList.remove('active-project'));
-      card.classList.add('active-project');
-    });
-    card.addEventListener('mouseleave', () => {
-      cycleProjects();
-      projectInterval = setInterval(cycleProjects, 1000);
-    });
-    card.addEventListener('focus', () => {
-      clearInterval(projectInterval);
-      projectCards.forEach(c => c.classList.remove('active-project'));
-      card.classList.add('active-project');
-    });
-    card.addEventListener('blur', () => {
-      cycleProjects();
-      projectInterval = setInterval(cycleProjects, 1000);
-    });
-  });
-});
-// === Skills Slider: Horizontal Auto-Moving with Manual Navigation ===
-// This code enables horizontal scrolling, autoplay, and pause-on-hover for the skills slider.
-
-document.addEventListener("DOMContentLoaded", () => {
+  // === Skills Slider: Horizontal Auto-Moving with Manual Navigation ===
   const slider = document.querySelector('.skills-slider');
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
-
   function getScrollAmount() {
     const firstCard = slider ? slider.querySelector('.skill-card') : null;
     if (firstCard) {
@@ -249,38 +247,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return 120; // fallback
   }
   let scrollAmount = getScrollAmount();
-
-  // Manual navigation
-  prevBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-  nextBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  // Autoplay functionality
-  let autoScroll = setInterval(() => {
-    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
+  if (slider && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
       slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  }, 2000);
-
-  // Pause on hover
-  slider.addEventListener('mouseenter', () => clearInterval(autoScroll));
-  slider.addEventListener('mouseleave', () => {
-    autoScroll = setInterval(() => {
+    });
+    let autoScroll = setInterval(() => {
       if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) {
         slider.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
     }, 2000);
-  });
-
-  // Update scrollAmount on window resize (for responsiveness)
-  window.addEventListener('resize', () => {
-    scrollAmount = getScrollAmount();
-  });
+    slider.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    slider.addEventListener('mouseleave', () => {
+      autoScroll = setInterval(() => {
+        if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 1) {
+          slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }, 2000);
+    });
+    window.addEventListener('resize', () => {
+      scrollAmount = getScrollAmount();
+    });
+  }
 });
