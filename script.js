@@ -1,4 +1,3 @@
-// Typing effect in hero section
 const typingText = "Chitranshu Jain";
 const typingTarget = document.getElementById("typing");
 let i = 0, forward = true;
@@ -25,7 +24,7 @@ function typeEffect() {
   }
 }
 
-// Typing effect for About Me section
+
 const aboutText = "I'm a B.Tech AI & Data Science student and web developer passionate about building beautiful, accessible, and high-performance web applications.";
 const aboutTypingTarget = document.getElementById("about-typing");
 let j = 0;
@@ -39,23 +38,21 @@ function aboutTypeEffect() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Page startup animation
   setTimeout(() => document.body.classList.add("loaded"), 80);
   setTimeout(typeEffect, 600);
   setTimeout(aboutTypeEffect, 900);
 
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("light-theme");
-      themeToggle.innerHTML = document.body.classList.contains("light-theme") ? '' : '';
-    });
-    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.body.classList.add("light-theme");
-      themeToggle.innerHTML = '';
-    }
-  }
+  // const themeToggle = document.getElementById("themeToggle");
+  // if (themeToggle) {
+  //   themeToggle.addEventListener("click", () => {
+  //     document.body.classList.toggle("light-theme");
+  //     themeToggle.innerHTML = document.body.classList.contains("light-theme") ? '' : '';
+  //   });
+  //   if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+  //     document.body.classList.add("light-theme");
+  //     themeToggle.innerHTML = '';
+  //   }
+  // }
 
   // Scrollspy highlight
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -233,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === Skills Slider: Horizontal Auto-Moving with Manual Navigation ===
+  // Skills Slider
   const slider = document.querySelector('.skills-slider');
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
@@ -244,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const marginRight = parseInt(style.marginRight) || 0;
       return firstCard.offsetWidth + marginRight;
     }
-    return 120; // fallback
+    return 120;
   }
   let scrollAmount = getScrollAmount();
   if (slider && prevBtn && nextBtn) {
